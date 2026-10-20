@@ -1,0 +1,482 @@
+[
+    {
+        "id": "276146b1af7f9fa4",
+        "type": "tab",
+        "label": "Flow Monitoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8c3b0ff8c09582fb",
+        "type": "mqtt in",
+        "z": "276146b1af7f9fa4",
+        "name": "",
+        "topic": "sistel/iot/dht2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c1ec52ea2a108370",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "8f5f6a03a9ae154c"
+            ]
+        ]
+    },
+    {
+        "id": "8f5f6a03a9ae154c",
+        "type": "json",
+        "z": "276146b1af7f9fa4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 390,
+        "y": 40,
+        "wires": [
+            [
+                "0cfe52342f180386",
+                "8df235c55c437d33",
+                "0f71e19b955dc8f3"
+            ]
+        ]
+    },
+    {
+        "id": "0cfe52342f180386",
+        "type": "function",
+        "z": "276146b1af7f9fa4",
+        "name": "Function Kelembapan",
+        "func": "if (typeof msg.payload === 'string') {\n    msg.payload = JSON.parse(msg.payload);\n}\nif (msg.payload && msg.payload.kelembapan !== undefined) {\n    return {\n        payload: msg.payload.kelembapan,\n        topic: \"Kelembapan (%)\"\n    };\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "80ec49f0a4fbcb49",
+                "c75c71d7685dc2ee"
+            ]
+        ]
+    },
+    {
+        "id": "8df235c55c437d33",
+        "type": "debug",
+        "z": "276146b1af7f9fa4",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "0f71e19b955dc8f3",
+        "type": "function",
+        "z": "276146b1af7f9fa4",
+        "name": "Function Suhu",
+        "func": "if (typeof msg.payload === 'string') {\n    msg.payload = JSON.parse(msg.payload);\n}\nif (msg.payload && msg.payload.suhu !== undefined) {\n    return {\n        payload: msg.payload.suhu,\n        topic: \"Suhu (°C)\"\n    };\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "c9c13f0d1ede4a59",
+                "03d89c9fe3dfb706"
+            ]
+        ]
+    },
+    {
+        "id": "80ec49f0a4fbcb49",
+        "type": "ui-gauge",
+        "z": "276146b1af7f9fa4",
+        "name": "Kelembapan",
+        "group": "d1139b8117c7c6c0",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Kelembapan (%)",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "38",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "73",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c9c13f0d1ede4a59",
+        "type": "ui-gauge",
+        "z": "276146b1af7f9fa4",
+        "name": "Suhu °C",
+        "group": "137776c30b7597ea",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Suhu (°C)",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "28",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "33",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 580,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c75c71d7685dc2ee",
+        "type": "ui-chart",
+        "z": "276146b1af7f9fa4",
+        "group": "d1139b8117c7c6c0",
+        "name": "Grafik Kelembapan",
+        "label": "Grafik Kelembapan",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 350,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03d89c9fe3dfb706",
+        "type": "ui-chart",
+        "z": "276146b1af7f9fa4",
+        "group": "137776c30b7597ea",
+        "name": "Grafik Suhu",
+        "label": "Grafik Suhu",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 590,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1ec52ea2a108370",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d1139b8117c7c6c0",
+        "type": "ui-group",
+        "name": "Parameter Kelembapan",
+        "page": "ebe49513613d9c82",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "137776c30b7597ea",
+        "type": "ui-group",
+        "name": "Parameter Suhu",
+        "page": "ebe49513613d9c82",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "ebe49513613d9c82",
+        "type": "ui-page",
+        "name": "Monitoring",
+        "ui": "a87fc02a504f2b19",
+        "path": "/monitoring",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d3323188fd933bee",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "a87fc02a504f2b19",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "d3323188fd933bee",
+        "type": "ui-theme",
+        "name": "Theme 3",
+        "colors": {
+            "surface": "#18191b",
+            "primary": "#2bf3c1",
+            "bgPage": "#111113",
+            "groupBg": "#212225",
+            "groupOutline": "#363a3f"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "14266d2025ac86ca",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.32.0"
+        }
+    }
+]
