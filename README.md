@@ -38,7 +38,7 @@ Proyek ini mengimplementasikan sistem pemantauan suhu dan kelembapan lingkungan 
       <img src="https://github.com/user-attachments/assets/848de606-8082-42be-910f-df44ac8a50aa" width="100%" alt="Wokwi Simulation">
     </td>
     <td align="center">
-      <img src="Screenshot%202026-10-16%20101815.png" width="100%" alt="Node-RED Dashboard">
+      <img src="ss_dashboard_UI.png" width="100%" alt="Node-RED Dashboard">
     </td>
   </tr>
 </table>
