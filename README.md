@@ -1,4 +1,4 @@
-# 🌐 Real-Time IoT Environmental Monitoring System (ESP32 + MQTT + Node-RED)
+# 🌐 [ACADEMIC PROJECT] Real-Time IoT Environmental Monitoring System (ESP32 + MQTT + Node-RED)
 
 ![Tools](https://img.shields.io/badge/Hardware-ESP32%20%7C%20DHT22-green)
 ![Protocols](https://img.shields.io/badge/Protocol-MQTT%20%7C%20JSON-blue)
